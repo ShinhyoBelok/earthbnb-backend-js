@@ -16,6 +16,15 @@ router.route('/:id')
   .get((req, res) => {
     res.send(req.house)
   })
+  .delete(async (req, res) => {
+    try {
+      await House.deleteOne({ _id: req.house.id })
+      res.send('House successfully deleted')
+    } catch (error) {
+      console.error(`Error deleting house by id: ${id} \n \n`, error)
+      res.status(500).send('Error deleting house')
+    }
+  })
 
 router.param('id', async (req, res, next, id) => {
   try {
