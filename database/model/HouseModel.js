@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// have to create the proper validations
 const houseSchema = new mongoose.Schema({
   house_name: String,
   address: String,
