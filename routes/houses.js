@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const House = require("../database/model/HouseM")
+const House = require("../database/model/HouseModel")
 
 router.route('/')
   .get(async (req, res) => {
@@ -13,19 +13,35 @@ router.route('/')
     }
   })
   .post(async (req, res) => {
+    const {
+      house_name,
+      address,
+      rooms,
+      beds,
+      picture,
+      price_by_night,
+      description
+    } = req.body
     try {
       await House.create({
-        house_name: 'Cozy Cottage',
-        address: '123 Main Street, City',
-        rooms: 3,
-        beds: 2,
-        picture: 'https://dam-assets.au.reastatic.net/images/w_2000,h_1500/v1666226657/news-lifestyle-content-assets/wp-content/production/image-10_787815ed2d9/image-10_787815ed2d9.jpg?_i=AA',
-        price_by_night: 100.0,
-        description: 'A charming cottage nestled in a peaceful neighborhood.'
+        // house_name: req.params.house_name,
+        // address: req.params.address,
+        // rooms: req.params.rooms,
+        // beds: req.params.beds,
+        // picture: req.params.picture,
+        // price_by_night: req.params.price_by_night,
+        // description: req.params.description
+        house_name,
+        address,
+        rooms,
+        beds,
+        picture,
+        price_by_night,
+        description
       })
     } catch (error) {
-      console.error(`Error deleting house by id: ${id} \n \n`, error)
-      res.status(500).send('Error deleting house')
+      console.error(`Error creating the house\n \n`, error)
+      res.status(500).send('Error creating house')
     }
   })
 
