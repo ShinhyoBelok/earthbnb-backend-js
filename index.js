@@ -11,4 +11,4 @@ app.listen(port,() => {
 
 app.use( express.json() )
 app.use('/houses', housesRouter)
-app.use('/', usersRouter)
+app.use('/users', usersRouter)
