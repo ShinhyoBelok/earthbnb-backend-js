@@ -16,7 +16,7 @@ router.post('logout', (req, res) => {
 })
 
 const canLogin = async (req) => {
-  const { username } = req.body
+  const { username } = req.body.user
   try {
     req.user = await User.findOne({ username })
     return { logged_in: true, user: req.user }

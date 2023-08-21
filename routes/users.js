@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../database/model/UserModel')
 
 router.post('/', (req, res) => {
-  const { username } = req.body
+  const { username } = req.body.user
   const newUser = new User({ username })
 
   if (User.findOne(newUser)) {
