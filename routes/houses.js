@@ -24,13 +24,6 @@ router.route('/')
     } = req.body
     try {
       await House.create({
-        // house_name: req.params.house_name,
-        // address: req.params.address,
-        // rooms: req.params.rooms,
-        // beds: req.params.beds,
-        // picture: req.params.picture,
-        // price_by_night: req.params.price_by_night,
-        // description: req.params.description
         house_name,
         address,
         rooms,
@@ -50,16 +43,17 @@ router.route('/:id')
     res.send(req.house)
   })
   .delete(async (req, res) => {
+    const { _id } = req.house
     try {
-      await House.deleteOne({ _id: req.house.id })
+      await House.deleteOne({ _id })
       res.send('House successfully deleted')
     } catch (error) {
-      console.error(`Error deleting house by id: ${id} \n \n`, error)
+      console.error(`Error deleting house by id: ${_id} \n \n`, error)
       res.status(500).send('Error deleting house')
     }
   })
 
-router.param('id', async (req, res, next, id) => {
+router.param("id", async (req, res, next, id) => {
   try {
     req.house = await House.findById(id)
   } catch (error) {
