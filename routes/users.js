@@ -2,15 +2,26 @@ const express = require('express')
 const router = express.Router()
 const User = require('../database/model/UserModel')
 
-router.post('/', (req, res) => {
-  const { username } = req.body.user
+router.post('/', async (req, res) => {
+  const { username } = req.body
   const newUser = new User({ username })
-
-  if (User.findOne(newUser)) {
-    res.status(422).json({ message: 'Username already exist' }) //status Unprocessable content
+  const foundUser = await User.findOne(newUser)
+  console.log(foundUser);
+  if (foundUser) {
+    res.status(422).send({ 
+      status: 'unrpocessable_entity', 
+      message: 'Username already exist' 
+    }) //status Unprocessable content
   } else if (newUser.save()) {
-    res.status(201).json({ user: newUser }) //status created
+    res.status(201).send({
+      status: 'created',
+      user: newUser
+    }) //status created
   } else {
-    res.status(500).json({ errors: newUser.errors })
+    res.status(500).send({
+      errors: newUser.errors
+    })
   }
 })
+
+module.exports = router
