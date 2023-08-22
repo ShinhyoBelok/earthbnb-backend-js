@@ -5,9 +5,8 @@ const User = require('../database/model/UserModel')
 
 router.post('/', (req, res) => {
   const newReservation = new Reservation(req.body)
-  console.log(newReservation);
   if (newReservation.save()) {
-    res.status(201).send({ json: newReservation })
+    res.status(201).send({ status: 'created', json: newReservation })
   } else {
     res.status(422).send({ errors: newReservation.errors })
   }
