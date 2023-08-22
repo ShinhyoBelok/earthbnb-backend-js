@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const House = require("../database/model/HouseModel")
+const Reservation = require('../database/model/ReservationModel')
 
 router.route('/')
   .get(async (req, res) => {
@@ -39,8 +40,13 @@ router.route('/')
   })
 
 router.route('/:id')
-  .get((req, res) => {
-    res.send(req.house)
+  .get(async (req, res) => {
+    const reservations = await Reservation.find({house_id: req.house})
+    const response = {
+      ...req.house.toObject(), // Convert Mongoose document to plain object
+      // reservations
+    }
+    res.send(response)
   })
   .delete(async (req, res) => {
     const { _id } = req.house
