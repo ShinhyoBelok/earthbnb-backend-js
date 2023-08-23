@@ -44,7 +44,7 @@ router.route('/:id')
     const reservations = await Reservation.find({house_id: req.house})
     const response = {
       ...req.house.toObject(), // Convert Mongoose document to plain object
-      // reservations
+      reservations
     }
     res.send(response)
   })
