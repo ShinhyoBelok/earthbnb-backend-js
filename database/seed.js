@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose')
 const House = require('./model/HouseModel')
 
@@ -90,6 +91,6 @@ async function seedDatabase() {
   console.log('Database seeded successfully');
 }
 
-mongoose.connect('mongodb://127.0.0.1:27017/earthbnb')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => seedDatabase())
   .catch(error => console.error('Error connecting to database', error));
