@@ -6,7 +6,6 @@ router.post('/', async (req, res) => {
   const { username } = req.body
   const newUser = new User({ username })
   const foundUser = await User.findOne(newUser)
-  console.log(foundUser);
   if (foundUser) {
     res.status(422).send({ 
       status: 'unrpocessable_entity', 
