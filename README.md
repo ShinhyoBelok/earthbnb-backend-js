@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src='./logo-w-background.svg' style="border-radius: 200px; style="width: 400px;"/>
+<img src='./logo-w-background.svg' style="border-radius: 200px; width="400"/>
 
 </div>
 
