@@ -15,7 +15,7 @@ app.listen(port,() => {
 })
 
 app.use(cors({
-  origin: 'https://earthbnb-react.onrender.com/'
+  origin: 'https://earthbnb-react.onrender.com'
 }));
 
 app.use( express.json() )
