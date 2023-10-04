@@ -18,7 +18,6 @@ router.get('/:username', async (req, res) => {
     const reservations = await Reservation.find({ user_id: user })
       .populate('house_id')
       .populate('user_id')
-    console.log(reservations);
     res.send(reservations)
   } catch (err) {
     res.send([])

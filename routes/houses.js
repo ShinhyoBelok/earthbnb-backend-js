@@ -21,7 +21,8 @@ router.route('/')
       beds,
       picture,
       price_by_night,
-      description
+      description,
+      publisher
     } = req.body
     try {
       await House.create({
@@ -31,7 +32,8 @@ router.route('/')
         beds,
         picture,
         price_by_night,
-        description
+        description,
+        publisher
       })
     } catch (error) {
       console.error(`Error creating the house\n \n`, error)
