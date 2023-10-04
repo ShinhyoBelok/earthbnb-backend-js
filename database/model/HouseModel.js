@@ -8,7 +8,8 @@ const houseSchema = new mongoose.Schema({
   beds: Number,
   picture: String,
   price_by_night: Number,
-  description: String
+  description: String,
+  publisher: String
 })
 
 module.exports = mongoose.model('House', houseSchema)

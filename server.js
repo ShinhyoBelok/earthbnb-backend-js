@@ -3,7 +3,8 @@ require('./database/mongoose')
 const express = require('express')
 const cors = require('cors');
 const app = express()
-const port = process.env.PORT
+// const port = process.env.PORT
+const port = 3000
 const housesRouter = require('./routes/houses')
 const usersRouter = require('./routes/users')
 const reservationsRouter = require('./routes/reservations')
@@ -15,7 +16,7 @@ app.listen(port,() => {
 })
 
 app.use(cors({
-  origin: 'https://earthbnb-react.onrender.com'
+  origin: ['https://earthbnb-react.onrender.com', 'http://localhost:5173']
 }));
 
 app.use( express.json() )
